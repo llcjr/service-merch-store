@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { enhance } from '$app/forms';
 	let {
 		id,
 		name,
@@ -31,6 +32,7 @@
 	let total = $derived((price ?? 0) * count);
 </script>
 
+
 <div
 	class="grid w-full grid-cols-[20px_5rem_minmax(0,1fr)_120px_100px] items-center gap-3 py-4"
 >
@@ -50,7 +52,7 @@
 		{/if}
 	</div>
 
-	<form method="POST" action="?/editCartEntry" class="flex items-center gap-2">
+	<form method="POST" action="?/editCartEntry" use:enhance class="flex items-center gap-2">
 		<input type="hidden" bind:value={id} name="id" />
 		<input type="hidden" bind:value={count} name="count" />
 

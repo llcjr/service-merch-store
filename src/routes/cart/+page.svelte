@@ -55,6 +55,15 @@
 		{ id: 'maya', label: 'Maya', icon: MayaIcon },
         { id: 'gcash', label: 'GCash', icon: GCashIcon }
 	] as const;
+
+	$effect(() => {
+		const currentIds = new Set(cartItems.map((item) => item.id));
+		const remainingIds = selectedIds.filter((id) => currentIds.has(id));
+
+		if (remainingIds.length !== selectedIds.length) {
+			selectedIds = remainingIds;
+		}
+	});
 </script>
 
 <div class="mx-auto max-w-6xl px-6 py-10">
