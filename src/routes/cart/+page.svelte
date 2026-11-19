@@ -34,11 +34,11 @@
 	);
 
 	const totalCount = $derived(
-	cartItems.reduce((sum, item) => sum + item.count, 0)
+		selectedItems.reduce((sum, item) => sum + item.count, 0)
 	);
 
 	const totalPrice = $derived(
-	cartItems.reduce((sum, item) => sum + item.price * item.count, 0)
+		selectedItems.reduce((sum, item) => sum + item.price * item.count, 0)
 	);
 
 	const canCheckout = $derived(selectedIds.length > 0 && paymentMethod !== null);
@@ -185,9 +185,9 @@
 					onclick={() => {
 						console.log({ selectedIds, paymentMethod, totalPrice });
 					}}
-					class="w-full rounded-full py-3.5 text-sm font-medium transition-colors disabled:cursor-not-allowed {paymentMethod
-						? 'bg-neutral-900 text-white hover:bg-neutral-800 disabled:bg-neutral-900'
-						: 'bg-neutral-300 text-neutral-500 hover:bg-neutral-300 disabled:bg-neutral-300'}"
+					class="w-full rounded-full py-3.5 text-sm font-medium transition-colors disabled:cursor-not-allowed {canCheckout
+						? 'bg-neutral-900 text-white hover:bg-neutral-800'
+						: 'bg-neutral-300 text-neutral-500'}"
 				>
 					Proceed to checkout
 				</button>
